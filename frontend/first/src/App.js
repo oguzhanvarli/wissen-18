@@ -14,9 +14,9 @@ function App() {
 
   return (
     <>
-      <Header yazi={headerText}  ></Header>
+      {/* <Header yazi={headerText}  ></Header>
       <Main yazi2={mainText} />
-      <Footer footerText={footerText} age={18} city={"İStanbul"} cities={["ist", "ankara", "edirne"]} isVisible={true}  />
+      <Footer footerText={footerText} age={18} city={"İStanbul"} cities={["ist", "ankara", "edirne"]} isVisible={true}  /> */}
       <CounterSample />
     </>
   )
