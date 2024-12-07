@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router'
 
 function CounterSample() {
 
@@ -45,6 +46,8 @@ function CounterSample() {
       <button onClick={changeName}>Change Name</button>
       <h1>{fullName}</h1>
       <button onClick={changeName2}>Change Name</button> */}
+      <Link to={"/props"}>Go To Props</Link> 
+
       <h1>{counter}</h1>
       <button onClick={increment}>+</button>
       <button onClick={decrement}>-</button>
