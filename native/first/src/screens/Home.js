@@ -2,11 +2,16 @@ import { ActivityIndicator, Button, FlatList, ScrollView, StyleSheet, Text, View
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import CharacterCard from '../components/CharacterCard'
+import FavoritiesList from '../components/FavoritiesList'
+import { useDispatch } from 'react-redux'
+import { increment } from '../store/features/favoriteSlice'
 
 const Home = () => {
 
   const [data, setData] = useState([])
   const [pageNumber, setPageNumber] = useState(1)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     if(pageNumber !== 1){
@@ -17,9 +22,6 @@ const Home = () => {
   useEffect(() => {
     getData()
   }, [])
-
-  
-  
 
   const getData = async () => {
     try {
@@ -39,15 +41,19 @@ const Home = () => {
       console.log("Get Next Page Error")
     }
   }
+
+  const addFavorite = () => {
+    dispatch(increment())
+  }
+
+
+
   return (
-    <View>
-     
+    <View>  
     <FlatList
       data={data}
-      renderItem={({item}) => <CharacterCard item={item} />}
-      ListHeaderComponent={
-        <Text>Tüm Karakterler</Text>
-      }
+      renderItem={({item}) => <CharacterCard item={item}  addFavorite={addFavorite}/>}
+      ListHeaderComponent={<FavoritiesList />}
       onEndReached={() => setPageNumber(pageNumber + 1)}
       ListFooterComponent={
         <View style={{margin: 20}}>
