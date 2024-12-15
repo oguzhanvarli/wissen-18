@@ -5,8 +5,11 @@ import CharacterCard from '../components/CharacterCard'
 import FavoritiesList from '../components/FavoritiesList'
 import { useDispatch } from 'react-redux'
 import { increment } from '../store/features/favoriteSlice'
+import { useNavigation } from '@react-navigation/native'
 
 const Home = () => {
+
+  const navigation = useNavigation()
 
   const [data, setData] = useState([])
   const [pageNumber, setPageNumber] = useState(1)
@@ -42,8 +45,12 @@ const Home = () => {
     }
   }
 
-  const addFavorite = () => {
-    dispatch(increment())
+  const addFavorite = (character) => {
+    dispatch(increment(character))
+  }
+
+  const goToDetail = () => {
+    navigation.navigate("Detail")
   }
 
 
@@ -52,7 +59,7 @@ const Home = () => {
     <View>  
     <FlatList
       data={data}
-      renderItem={({item}) => <CharacterCard item={item}  addFavorite={addFavorite}/>}
+      renderItem={({item}) => <CharacterCard item={item}  addFavorite={addFavorite} goToDetail={goToDetail}/>}
       ListHeaderComponent={<FavoritiesList />}
       onEndReached={() => setPageNumber(pageNumber + 1)}
       ListFooterComponent={

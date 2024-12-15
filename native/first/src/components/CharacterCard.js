@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Card, Button } from '@rneui/themed';
 
-const CharacterCard = ({ item, addFavorite }) => {
+const CharacterCard = ({ item, addFavorite, goToDetail }) => {
   return (
     <Card>
       <Card.Title>{item.name}</Card.Title>
@@ -27,6 +27,7 @@ const CharacterCard = ({ item, addFavorite }) => {
           }}
           title="DETAIL"
           color={"success"}
+          onPress={goToDetail}
         />
         <Button
           buttonStyle={{
@@ -37,7 +38,7 @@ const CharacterCard = ({ item, addFavorite }) => {
           }}
           title="ADD FAVORITE"
           color={"error"}
-          onPress={addFavorite}
+          onPress={() => addFavorite(item)}
         />
       </View>
 
